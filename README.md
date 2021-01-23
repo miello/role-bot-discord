@@ -14,4 +14,4 @@ Then add bot `TOKEN_ID` and firebase-admin `CREDENTIAL_PATH` to `.env` (More inf
 
 ### `python main.py`
 
-If we don't want to have a cache, add the tag `-B`
+If we don't want to have a **pycache**, add the tag `-B`
