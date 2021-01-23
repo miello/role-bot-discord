@@ -11,3 +11,6 @@ cred = credentials.Certificate(CREDENTIAL_PATH)
 
 firebase = firebase_admin.initialize_app(cred)
 db = firestore.client()
+
+server_emoji = dict()
+server_msg = dict()
