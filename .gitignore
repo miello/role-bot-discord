@@ -1,0 +1,8 @@
+.vscode
+__pycache__
+.env
+
+test*
+credential
+*_ignore
+venv*
