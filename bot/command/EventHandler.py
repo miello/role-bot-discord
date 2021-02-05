@@ -56,11 +56,9 @@ class EventHandler(commands.Cog):
             return
         print(f'Message {message.content} from {message.author}')
 
-
-    @commands.command(pass_context=True)
-    async def about(ctx: commands.Context):
-        await ctx.send('Role Adding System By Using Emoji Reaction [RASBUER]\n**(Currently in WIP)**')
-
+    @commands.command(aliases=['Ping'], pass_context=True)
+    async def ping(self, ctx: commands.context):
+        await ctx.send(f'Pong! Latency: {round(self.bot.latency * 1000)} ms')
 
 def setup(bot):
     bot.add_cog(EventHandler(bot))

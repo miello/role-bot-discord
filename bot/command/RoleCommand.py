@@ -1,12 +1,20 @@
 import discord
 from discord.ext import commands
+from discord.ext.commands.core import has_guild_permissions
 from bot.setting import server_emoji, server_msg
 
 class Role(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(pass_context=True)
+    @has_guild_permissions(manage_roles=True)
+    @commands.group(pass_context=True)
+    @commands.guild_only()
+    async def role(self, ctx: commands.Context):
+        if ctx.message.content == '%role':
+            await ctx.send('Role Adding System By Using Emoji Reaction [RASBUER]\n**(Currently in WIP)**')
+
+    @role.command(pass_context=True)
     async def add(self, ctx: commands.Context, emoji: str, role: str, *, reason: str):
         print(emoji, role)
         try:
@@ -45,9 +53,8 @@ class Role(commands.Cog):
         except Exception as e:
             await ctx.send('**Unknown error occurred**')
 
-
-    @commands.command(pass_context=True)
-    async def remove(self, ctx: commands.Context, emoji_del: str):
+    @role.command(pass_context=True)
+    async def remove(self, *, ctx: commands.Context, emoji_del: str):
         try:
             # First check that emoji present in database or not
             if emoji_del not in server_emoji.keys():
@@ -74,8 +81,7 @@ class Role(commands.Cog):
             print(e)
             await ctx.send('**Unknown error occurred**')
 
-
-    @commands.command(pass_context=True)
+    @role.command(pass_context=True)
     async def display(self, ctx: commands.Context, channel: str):
         dest_channel = None
         guild = ctx.guild
@@ -98,6 +104,10 @@ class Role(commands.Cog):
         server_msg[guild.id] = msg
         print('has ' + str(guild.id))
 
-
+    @role.command(pass_context=True)
+    async def help(self, ctx: commands.Context):
+        await ctx.send(commands.Cog.get_commands(self))
+        pass
+    
 def setup(bot):
     bot.add_cog(Role(bot))
