@@ -1,6 +1,6 @@
 # Role Adding Discord Bot
 
-## Currently in WIP
+## Currently in WIP (UNMAINTAINED)
 
 For personal usage only
 
